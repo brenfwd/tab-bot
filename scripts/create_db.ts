@@ -48,7 +48,7 @@ function splitSQLStatements(sql: string): string[] {
         else if (la == "/*") state = State.IN_MULTI_LINE_COMMENT;
         else if (char == ";") results.push(currentStatement.trim()), (currentStatement = "");
         else if (/[\s\n]{2}/m.test(la) || (/[\s\n]/m.test(char) && /[\s\n]/m.test(currentStatement.at(-1) ?? "")))
-          void 0; // remove back-to-back whitespace
+          break; // remove back-to-back whitespace
         else if (/[\s\n]/m.test(char)) currentStatement += " ";
         else currentStatement += char;
         break;
