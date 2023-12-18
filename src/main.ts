@@ -15,15 +15,13 @@ bot.on("interactionCreate", async (ix) => {
   if (ix.isUserContextMenuCommand()) {
     const normalizedName = ix.commandName.toLowerCase().replace(/[\s-]+/g, "-");
 
-    if (normalizedName == "pay") {
+    if (normalizedName == "pay-with-tabby") {
       await handlePay(ix);
-    } else if (normalizedName == "view-balances") {
+    } else if (normalizedName == "view-tabby-balances") {
       await handleViewBalances(ix);
     }
   } else if (ix.isChatInputCommand()) {
-    const normalizedName = ix.commandName.toLowerCase().replace(/[\s-]+/g, "-");
-
-    if (normalizedName == "balance") {
+    if (ix.commandName == "balance") {
       await handleBalance(ix);
     }
   }
