@@ -56,14 +56,18 @@ export function getOrCreateUserId(discordId: Tables.Users["discord_id"]): Tables
     return existing.id;
   }
 
-  exec(SQL`
+  const newRecord = selectOne<Tables.Users>(SQL`
     INSERT INTO Users
     (discord_id)
     VALUES
     (${discordId})
+    RETURNING *
   `);
 
-  return getOrCreateUserId(discordId);
+  if (!newRecord)
+    throw new Error("Failed to insert new Users record.")
+
+  return newRecord.id;
 }
 
 export function createTransaction(
