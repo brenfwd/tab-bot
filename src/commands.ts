@@ -12,6 +12,16 @@ import {
 import * as db from "./database";
 
 export async function handlePay(ix: UserContextMenuCommandInteraction) {
+  if (ix.user.id === ix.targetUser.id) {
+    await ix.reply({ content: "You can't pay yourself!", ephemeral: true });
+    return;
+  }
+
+  if (ix.targetUser.bot) {
+    await ix.reply({ content: "You can't pay a bot!", ephemeral: true });
+    return;
+  }
+
   const modal = new ModalBuilder() //
     .setCustomId(`${ix.id}-modal`)
     .setTitle(`Paying @${ix.targetUser.tag}`);
