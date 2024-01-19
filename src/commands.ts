@@ -24,7 +24,7 @@ export async function handlePay(ix: UserContextMenuCommandInteraction) {
 
   const modal = new ModalBuilder() //
     .setCustomId(`${ix.id}-modal`)
-    .setTitle(`Paying @${ix.targetUser.tag}`);
+    .setTitle(`Issuing IOU to @${ix.targetUser.tag}`);
 
   const amountInput = new TextInputBuilder()
     .setCustomId(`${ix.id}-amountInput`)
