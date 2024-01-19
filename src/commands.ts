@@ -13,18 +13,18 @@ import * as db from "./database";
 
 export async function handlePay(ix: UserContextMenuCommandInteraction) {
   if (ix.user.id === ix.targetUser.id) {
-    await ix.reply({ content: "You can't pay yourself!", ephemeral: true });
+    await ix.reply({ content: "You can't owe yourself!", ephemeral: true });
     return;
   }
 
   if (ix.targetUser.bot) {
-    await ix.reply({ content: "You can't pay a bot!", ephemeral: true });
+    await ix.reply({ content: "You can't owe a bot!", ephemeral: true });
     return;
   }
 
   const modal = new ModalBuilder() //
     .setCustomId(`${ix.id}-modal`)
-    .setTitle(`Paying @${ix.targetUser.tag}`);
+    .setTitle(`Issuing IOU to @${ix.targetUser.tag}`);
 
   const amountInput = new TextInputBuilder()
     .setCustomId(`${ix.id}-amountInput`)
@@ -104,7 +104,7 @@ export async function handlePay(ix: UserContextMenuCommandInteraction) {
   });
 
   const embed = new EmbedBuilder()
-    .setTitle("Payment Complete")
+    .setTitle("Debt Issuance Complete")
     .setColor("#3de643")
     .setTimestamp()
     .setDescription("The transaction completed successfully.")

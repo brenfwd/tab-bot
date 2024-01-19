@@ -15,7 +15,7 @@ bot.on("interactionCreate", async (ix) => {
   if (ix.isUserContextMenuCommand()) {
     const normalizedName = ix.commandName.toLowerCase().replace(/[\s-]+/g, "-");
 
-    if (normalizedName == "pay-with-tabby") {
+    if (normalizedName == "issue-iou-with-tabbypay") {
       await handlePay(ix);
     } else if (normalizedName == "view-tabby-balances") {
       await handleViewBalances(ix);

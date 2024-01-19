@@ -11,7 +11,7 @@ const CLIENT_ID = process.env.CLIENT_ID!;
 const commands: RESTPostAPIApplicationCommandsJSONBody[] = [
   {
     type: ApplicationCommandType.User,
-    name: "Pay with Tabby",
+    name: "Issue IOU with TabbyPay",
   },
   {
     type: ApplicationCommandType.User,
